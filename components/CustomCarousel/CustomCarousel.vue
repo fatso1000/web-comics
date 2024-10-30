@@ -2,7 +2,7 @@
   <Carousel v-bind="settings" class="mx-auto" :breakpoints="breakpoints">
     <Slide v-for="(item, index) in cardsList">
       <NuxtLink
-        :href="`/r/${item.id}`"
+        :href="`/r/${item._id}`"
         class="carousel__item shadow relative rounded-md flex flex-col gap-1 h-full"
         :style="{ backgroundColor: item.bgColor, color: item.textColor }"
       >
@@ -38,7 +38,7 @@
 <script setup lang="ts">
 import type { ICard } from "~/types/webTypes";
 import "vue3-carousel/dist/carousel.css";
-import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
+import { Carousel, Slide, Navigation } from "vue3-carousel";
 const settings = ref({
   itemsToShow: 1,
   snapAlign: "center",

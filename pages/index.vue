@@ -2,7 +2,7 @@
   <section class="mt-10 w-full flex flex-col px-4">
     <h2 class="text-primary-content font-black text-2xl">Trending🔥</h2>
     <div class="flex w-full">
-      <CustomCarousel :cardsList="trending" />
+      <!-- <CustomCarousel :cardsList="contentList" /> -->
     </div>
   </section>
   <section class="w-full mt-5 flex flex-col px-4">
@@ -11,8 +11,8 @@
       class="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2"
     >
       <NuxtLink
-        v-for="(item, index) in trending"
-        :href="`/r/${item.id}`"
+        v-for="(item, index) in contentList"
+        :href="`/r/${item._id}`"
         class="carousel__item shadow relative rounded-md flex flex-col gap-1 h-full"
         :style="{ backgroundColor: item.bgColor, color: item.textColor }"
       >
@@ -27,7 +27,7 @@
         </div>
         <div>
           <img
-            :src="item.img"
+            :src="item.thumbnail"
             class="w-full max-h-40 rounded-md rounded-b-xl"
             alt=""
             srcset=""
@@ -50,6 +50,10 @@
 </template>
 <script setup lang="ts">
 import CustomCarousel from "~/components/CustomCarousel/CustomCarousel.vue";
+
+const contentList = ref<ICard[]>()
+const { data } = await $fetch("/api/content");
+contentList.value = data as ICard[];
 
 const trending = ref([
   {

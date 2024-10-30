@@ -1,6 +1,7 @@
 export interface ICard {
-  id: string;
-  img: string;
+  _id: string;
+  thumbnail: string;
+  description: string;
   title: string;
   bgColor: string;
   textColor: string;
@@ -14,5 +15,40 @@ export interface ICardDetail extends ICard {
   categories: string[];
   description: string;
   created_at: string;
-  content: { id: string; img: string }[];
+  content: { _id: string; img: string }[];
+}
+
+export interface IAuthor {
+  _id: string;
+  fullName: string;
+  thumbnail: string;
+  created_at: Date;
+  dateOfBirth: Date;
+  nationality: string;
+  contents: unknown[];
+}
+
+export interface ContentFormValues {
+  title: string;
+  type: string;
+  description: string;
+  thumbnail: File | null;
+  thumbnailPreview: string;
+  language: string;
+  authors: string[];
+  categories: string[];
+}
+
+export enum ModalTypes {
+  CREATE = "CREATE",
+  UPDATE = "UPDATE",
+}
+export interface ChapterModelProps {
+  id: number;
+  modelValue: boolean;
+  type: ModalTypes;
+  description: string;
+  thumbnail: string;
+  title: string;
+  number: number;
 }
